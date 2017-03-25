@@ -1,5 +1,5 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "python.pythonPath": "~/work/code/learning/python/image/venv/bin/python3.6",
+    "python.pythonPath": "/Users/atiq/work/code/learning/python/image//venv/bin/python",
     "python.linting.pylintEnabled": false
 }
