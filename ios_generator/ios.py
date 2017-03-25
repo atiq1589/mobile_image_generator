@@ -130,7 +130,7 @@ class iOS(object):
         self.create_dir(iOS.root_dir)
         for work in self.works:
             key = list(work.keys())[0]
-            sub_dir = "{}/app_icons/{}/".format(iOS.root_dir, key)
+            sub_dir = "{}/{}/".format(iOS.root_dir, key)
             self.create_dir(sub_dir)
             for key, value in work[key].items():
                 name = key.format(fileName.split('.')[0]) if '{}' in key else key 

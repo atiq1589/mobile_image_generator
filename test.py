@@ -1,7 +1,12 @@
 import sys
-# from mobile_image_converter.android import Android
-# Android().resize(sys.argv[1])
-# Android().resize_splash(sys.argv[1])
-
+from android_generator import Android
 from ios_generator import iOS
+from win_generator import Windows
+
+Android().resize(sys.argv[1])
+Android().resize_splash(sys.argv[1])
+
 iOS().resize(sys.argv[1])
+
+
+Windows().resize(sys.argv[1])

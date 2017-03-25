@@ -3,7 +3,7 @@ import shutil
 
 from PIL import Image
 class Android(object):
-    root_dir = 'android'
+    root_dir = 'output/android'
     subdir_prefix = 'drawable'
     icons = {
             'ldpi':36,
