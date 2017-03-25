@@ -97,6 +97,18 @@ class iOS(object):
         'Messages32x24@3x': (96, 72),
     }
 
+    splash_screen = {
+        'apple-tv': [(1920,1080)],
+        'retina-hd-5.5': [(1242, 2208)],
+        'retina-hd-4.7': [(750, 1334)],
+        'retina-hd-5.5-land': [(2208, 1242)],
+        'iphone': [(320,480), (640, 960)],
+        'iphone-retina-4': [(640, 1136)],
+        'ipda': [(768, 1024), (1536, 2048)],
+        'ipda-land': [(1024, 768), (2048, 1536)],
+        'ipad-without-status-bar': [(768,1004), (1536, 2008)],
+        'ipad-without-status-bar-lag': [(1024,748), (2048, 1496)],
+    }
     custom_icons = {
         '{}': 32,
         '{}@2x': 64,
@@ -126,8 +138,7 @@ class iOS(object):
                 image.resize(size_value, Image.ANTIALIAS).save(
                     '{}/{}.{}'.format(directory, output, file.split('.')[-1]))
 
-    def resize(self, fileName):
-        self.create_dir(iOS.root_dir)
+    def resize_icons(self, fileName):
         for work in self.works:
             key = list(work.keys())[0]
             sub_dir = "{}/{}/".format(iOS.root_dir, key)
@@ -136,3 +147,18 @@ class iOS(object):
                 name = key.format(fileName.split('.')[0]) if '{}' in key else key 
                 self.resize_image(fileName, value if isinstance(
                     value, tuple) else (value, value), sub_dir, name)
+
+    def resize_splash_screen(self, filename):
+        sub_dir = "{}/splashscreen/".format(iOS.root_dir)
+        self.create_dir(sub_dir)
+        for key, value in iOS.splash_screen.items():
+            for ind, val in enumerate(value):
+                suffix = '@{}x'.format(ind + 1) if ind > 0 else ''
+                name = 'splashscreen{}x{}{}'.format(val[0], val[1], suffix)
+                self.resize_image(filename,val,sub_dir,name)
+         
+    def resize(self, fileName):
+        self.create_dir(iOS.root_dir)
+        self.resize_icons(fileName)
+        self.resize_splash_screen(fileName)
+        
